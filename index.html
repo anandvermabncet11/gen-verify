@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEN DAO — Wallet Verification</title>
+<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;background:#0b0f17;color:#e8eef7;display:flex;min-height:100vh;align-items:center;justify-content:center}.w{max-width:440px;padding:28px;text-align:center}.t{font-size:22px;font-weight:700;letter-spacing:.3px}.s{color:#9fb0c7;font-size:14px;margin:10px 0 22px}.b{display:block;background:#f5841f;color:#fff;text-decoration:none;padding:16px 18px;border-radius:12px;font-weight:700;font-size:17px}.m{margin-top:16px;color:#6f819b;font-size:12px}</style></head>
+<body><div class="w"><div class="t">GEN DAO · Wallet Verification</div>
+<div class="s" id="s">Opening MetaMask to complete verification…</div>
+<a class="b" id="b" href="metamask://dapp/panel.gendao.org/wallet.php">Open in MetaMask</a>
+<div class="m">Please approve the connection and sign the verification message.</div></div>
+<script>
+(function(){
+  var scheme="metamask://dapp/panel.gendao.org/wallet.php";
+  var uni="https://metamask.app.link/dapp/panel.gendao.org/wallet.php";
+  if(/MetaMask/i.test(navigator.userAgent)){location.replace("https://panel.gendao.org/wallet.php");return;}
+  setTimeout(function(){try{location.href=scheme;}catch(e){}},200);
+  setTimeout(function(){if(!document.hidden){location.href=uni;}},2600);
+})();
+</script></body></html>
